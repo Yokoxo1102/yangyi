@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Web3 Demo (ethers v6)</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header class="header">
+        <div>
+          <h1>Web3 DApp 示例</h1>
+          <p class="subtle">
+            连接 MetaMask，查看账户/网络/余额，发送 ETH，查询 ERC20 余额（ethers v6）。
+          </p>
+        </div>
+        <div class="row">
+          <button id="connectBtn" class="primary">连接钱包</button>
+          <button id="disconnectBtn" class="ghost" disabled>断开</button>
+        </div>
+      </header>
+
+      <section class="grid">
+        <div class="card">
+          <h2>状态</h2>
+          <div class="kv">
+            <div class="k">Provider</div>
+            <div class="v" id="providerStatus">未连接</div>
+            <div class="k">地址</div>
+            <div class="v mono" id="address">-</div>
+            <div class="k">网络</div>
+            <div class="v" id="network">-</div>
+            <div class="k">Chain ID</div>
+            <div class="v" id="chainId">-</div>
+            <div class="k">ETH 余额</div>
+            <div class="v" id="ethBalance">-</div>
+          </div>
+          <div class="row wrap">
+            <button id="refreshBtn" class="ghost" disabled>刷新</button>
+            <button id="switchSepoliaBtn" class="ghost" disabled>切到 Sepolia</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>发送 ETH</h2>
+          <label class="label">
+            收款地址
+            <input id="toAddress" class="input mono" placeholder="0x..." />
+          </label>
+          <label class="label">
+            金额（ETH）
+            <input id="amountEth" class="input" placeholder="0.01" inputmode="decimal" />
+          </label>
+          <div class="row">
+            <button id="sendBtn" class="primary" disabled>发送</button>
+          </div>
+          <div class="help mono" id="sendResult"> </div>
+        </div>
+
+        <div class="card">
+          <h2>查询 ERC20 余额</h2>
+          <label class="label">
+            Token 合约地址
+            <input id="tokenAddress" class="input mono" placeholder="0x..." />
+          </label>
+          <label class="label">
+            查询地址（可选，默认当前钱包）
+            <input id="holderAddress" class="input mono" placeholder="0x..." />
+          </label>
+          <div class="row wrap">
+            <button id="tokenQueryBtn" class="primary" disabled>查询</button>
+          </div>
+          <div class="kv">
+            <div class="k">Symbol</div>
+            <div class="v" id="tokenSymbol">-</div>
+            <div class="k">Decimals</div>
+            <div class="v" id="tokenDecimals">-</div>
+            <div class="k">Balance</div>
+            <div class="v mono" id="tokenBalance">-</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>日志</h2>
+        <pre id="log" class="log"></pre>
+      </section>
+
+      <footer class="footer subtle">
+        提示：需要安装 MetaMask 或其他注入 EIP-1193 的钱包扩展，并在浏览器中打开本页面。
+      </footer>
+    </main>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
